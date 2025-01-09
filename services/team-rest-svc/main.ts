@@ -32,26 +32,6 @@ router.get("/api/teams", async (ctx) => {
   ctx.response.body = await teams.find({}).toArray();
 });
 
-/**
- * GET /api/teams/:id
- * Retrieves a single team by its ID
- * @param id - The unique identifier of the team
- * @returns The team object if found, 404 error if not found
- */
-router.get("/api/teams/:id", async (ctx) => {
-  try {
-    const team = await teams.findOne({ _id: ctx.params.id });
-    if (team) {
-      ctx.response.body = team;
-    } else {
-      ctx.response.status = 404;
-      ctx.response.body = { message: `Team with id ${ctx.params.id} not found` };
-    }
-  } catch (e) {
-    ctx.response.status = 400;
-    ctx.response.body = { message: "Invalid ID format" };
-  }
-});
 
 /**
  * GET /api/teams/by-ids
@@ -85,6 +65,28 @@ router.get("/api/teams/by-ids", async (ctx) => {
     ctx.response.body = { message: "Invalid ID format" };
   }
 });
+
+/**
+ * GET /api/teams/:id
+ * Retrieves a single team by its ID
+ * @param id - The unique identifier of the team
+ * @returns The team object if found, 404 error if not found
+ */
+router.get("/api/teams/:id", async (ctx) => {
+  try {
+    const team = await teams.findOne({ _id: ctx.params.id });
+    if (team) {
+      ctx.response.body = team;
+    } else {
+      ctx.response.status = 404;
+      ctx.response.body = { message: `Team with id ${ctx.params.id} not found` };
+    }
+  } catch (e) {
+    ctx.response.status = 400;
+    ctx.response.body = { message: "Invalid ID format" };
+  }
+});
+
 
 // Initialize the Oak application
 const app = new Application();

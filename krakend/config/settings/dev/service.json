@@ -1,0 +1,47 @@
+{
+  "port": 8085,
+  "environment": "DEVELOPMENT",
+  "version": "v1",
+  "default_host": "http://host.docker.internal:4200",
+  "timeout": "3s",
+  "cache_ttl": "3s",
+  "output_encoding": "json",
+  "extra_config": {
+    "telemetry/logging": {
+      "level": "DEBUG",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": true
+    },
+    "router": {
+      "auto_options": true
+    },
+    "security/cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "allow_methods": [
+        "GET",
+        "HEAD",
+        "POST",
+        "OPTIONS",
+        "DELETE"
+      ],
+      "debug": true,
+      "expose_headers": [
+        "Content-Length",
+        "Content-Type",
+        "Access-Control-Allow-Origin",
+        "Cookie",
+        "X-Martian"
+      ],
+      "allow_headers": [
+        "*"
+      ],
+      "max_age": "12h",
+      "options_passthrough": true,
+      "allow_credentials": true,
+      "Cookie": "X-Martian"
+    }
+  }
+}

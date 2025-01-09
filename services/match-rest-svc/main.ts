@@ -70,7 +70,7 @@ router.get("/api/matches", async (ctx) => {
  * @param teamId - The ID of the team to find matches for
  */
 router.get("/api/matches/team/:teamId", async (ctx) => {
-  const teamId = parseInt(ctx.params.teamId);
+  const teamId = ctx.params.teamId;
   // Find matches where the team is either home or away
   const teamMatches = await matches.find({
     $or: [

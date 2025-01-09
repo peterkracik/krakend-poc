@@ -38,5 +38,20 @@ services:
     depends_on:
       - mongodb
 
+  apigateway:
+    image: devopsfaith/krakend:watch
+    ports:
+      - "8085:8085"
+    volumes:
+      - ./krakend:/etc/krakend
+    environment:
+      - FC_ENABLE=1
+      - FC_SETTINGS=config/settings/dev
+      - FC_PARTIALS=config/partials
+      - FC_TEMPLATES=config/templates
+      - FC_OUT=out.json
+      - SERVICE_NAME=KrakenD API Gateway
+    command: [ "run", "-dc", "krakend.tmpl", "" ]
+
 volumes:
   mongodb_data:

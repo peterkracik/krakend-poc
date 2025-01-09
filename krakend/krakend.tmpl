@@ -1,0 +1,41 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "{{ env "SERVICE_NAME" }} ({{ .service.environment }})",
+  "port": {{ .service.port }},
+  "timeout": "{{ .service.timeout }}",
+  "cache_ttl":  "{{ .service.cache_ttl }}",
+  "output_encoding": "{{ .service.output_encoding }}",
+  "extra_config": {{ marshal .service.extra_config }},
+  "endpoints": [{{ range $idx, $endpoint := .endpoints.endpoints }}{{if $idx}},{{end}}
+    {
+        "endpoint": "/api/{{ $.service.version }}{{ $endpoint.endpoint }}",
+        "method": "{{ $endpoint.method }}",
+        {{ if $endpoint.input_query_strings }}
+        "input_query_strings": [{{ range $i, $qs := $endpoint.input_query_strings }}{{if $i}}, {{end}}"{{ $qs }}"{{ end }}],
+        {{ end }}
+        "extra_config": {
+        },
+        "backend": [
+            {
+              "url_pattern": "{{ $endpoint.backend_url_pattern }}",
+              "encoding": "json",
+              "method": "{{ $endpoint.backend_method }}",
+              {{ if $endpoint.collection_mapping }}
+              "is_collection": true,
+              "mapping": {
+                "collection": "{{ $endpoint.collection_mapping }}"
+              },
+              {{ end }}
+              "host": [
+                "{{ $endpoint.backend_host }}"
+              ],
+              "extra_config": {
+                {{ include "backend_errors.tmpl" }}
+              }
+            }
+        ]
+    }{{ end }},
+    {{ template "graphql.tmpl" . }}
+ ]
+}

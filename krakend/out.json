@@ -1,0 +1,184 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "name": "KrakenD API Gateway (DEVELOPMENT)",
+  "port": 8085,
+  "timeout": "3s",
+  "cache_ttl":  "3s",
+  "output_encoding": "json",
+  "extra_config": {"router":{"auto_options":true},"security/cors":{"Cookie":"X-Martian","allow_credentials":true,"allow_headers":["*"],"allow_methods":["GET","HEAD","POST","OPTIONS","DELETE"],"allow_origins":["*"],"debug":true,"expose_headers":["Content-Length","Content-Type","Access-Control-Allow-Origin","Cookie","X-Martian"],"max_age":"12h","options_passthrough":true},"telemetry/logging":{"level":"DEBUG","prefix":"[KRAKEND]","stdout":true,"syslog":false}},
+  "endpoints": [
+    {
+        "endpoint": "/api/v1/teams",
+        "method": "GET",
+        
+        "extra_config": {
+        },
+        "backend": [
+            {
+              "url_pattern": "/api/teams",
+              "encoding": "json",
+              "method": "GET",
+              
+              "is_collection": true,
+              "mapping": {
+                "collection": "data"
+              },
+              
+              "host": [
+                "http://team-svc:8000"
+              ],
+              "extra_config": {
+                "backend/http": {
+    "return_error_code": true
+}
+              }
+            }
+        ]
+    },
+    {
+        "endpoint": "/api/v1/teams/{id}",
+        "method": "GET",
+        
+        "extra_config": {
+        },
+        "backend": [
+            {
+              "url_pattern": "/api/teams/{id}",
+              "encoding": "json",
+              "method": "GET",
+              
+              "host": [
+                "http://team-svc:8000"
+              ],
+              "extra_config": {
+                "backend/http": {
+    "return_error_code": true
+}
+              }
+            }
+        ]
+    },
+    {
+        "endpoint": "/api/v1/teams/by-ids",
+        "method": "GET",
+        
+        "input_query_strings": ["ids", "somethingelse"],
+        
+        "extra_config": {
+        },
+        "backend": [
+            {
+              "url_pattern": "/api/teams/by-ids",
+              "encoding": "json",
+              "method": "GET",
+              
+              "is_collection": true,
+              "mapping": {
+                "collection": "data"
+              },
+              
+              "host": [
+                "http://team-svc:8000"
+              ],
+              "extra_config": {
+                "backend/http": {
+    "return_error_code": true
+}
+              }
+            }
+        ]
+    },
+    {
+        "endpoint": "/api/v1/matches",
+        "method": "POST",
+        
+        "extra_config": {
+        },
+        "backend": [
+            {
+              "url_pattern": "/api/matches",
+              "encoding": "json",
+              "method": "POST",
+              
+              "host": [
+                "http://match-svc:8000"
+              ],
+              "extra_config": {
+                "backend/http": {
+    "return_error_code": true
+}
+              }
+            }
+        ]
+    },
+    {
+        "endpoint": "/api/v1/matches",
+        "method": "GET",
+        
+        "extra_config": {
+        },
+        "backend": [
+            {
+              "url_pattern": "/api/matches",
+              "encoding": "json",
+              "method": "GET",
+              
+              "is_collection": true,
+              "mapping": {
+                "collection": "data"
+              },
+              
+              "host": [
+                "http://match-svc:8000"
+              ],
+              "extra_config": {
+                "backend/http": {
+    "return_error_code": true
+}
+              }
+            }
+        ]
+    },
+    {
+        "endpoint": "/api/v1/matches/team/{teamId}",
+        "method": "GET",
+        
+        "extra_config": {
+        },
+        "backend": [
+            {
+              "url_pattern": "/api/matches/team/{teamId}",
+              "encoding": "json",
+              "method": "GET",
+              
+              "is_collection": true,
+              "mapping": {
+                "collection": "data"
+              },
+              
+              "host": [
+                "http://match-svc:8000"
+              ],
+              "extra_config": {
+                "backend/http": {
+    "return_error_code": true
+}
+              }
+            }
+        ]
+    },
+    {
+   "endpoint": "/graphql",
+   "method": "POST",
+   "backend": [
+   {
+     "url_pattern": "/graphql",
+     "encoding": "json",
+     "method": "POST",
+     "host": ["http://graphql-svc:8000"]
+   }
+   ]
+ }
+ ]
+}

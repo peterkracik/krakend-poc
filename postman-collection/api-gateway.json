@@ -1,0 +1,262 @@
+{
+  "info": {
+    "name": "API Gateway",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "REST API",
+      "item": [
+        {
+          "name": "Get Teams",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8085/api/v1/teams",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8085",
+              "path": ["api", "v1", "teams"]
+            }
+          }
+        },
+        {
+          "name": "Get Team by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8085/api/v1/teams/:id",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8085",
+              "path": ["api", "v1", "teams", ":id"]
+            }
+          }
+        },
+        {
+          "name": "Get Teams by IDs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8085/api/v1/teams/by-ids?ids=65784b6202f0a492f60a1234,65784b6202f0a492f60a5678,65784b6202f0a492f60a9abc",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8085",
+              "path": ["api", "v1", "teams", "by-ids"],
+              "query": [
+                {
+                  "key": "ids",
+                  "value": "65784b6202f0a492f60a1234,65784b6202f0a492f60a5678,65784b6202f0a492f60a9abc"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Match",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"homeTeamId\": \"65784b6202f0a492f60a1234\",\n  \"awayTeamId\": \"65784b6202f0a492f60a5678\",\n  \"date\": \"2023-10-15T15:00:00Z\",\n  \"score\": {\n    \"home\": 2,\n    \"away\": 1\n  }\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8085/api/v1/matches",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8085",
+              "path": ["api", "v1", "matches"]
+            }
+          }
+        },
+        {
+          "name": "Get Matches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8085/api/v1/matches",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8085",
+              "path": ["api", "v1", "matches"]
+            }
+          }
+        },
+        {
+          "name": "Get Matches by Team ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8085/api/v1/matches/team/:teamId",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8085",
+              "path": ["api", "v1", "matches", "team", ":teamId"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "GraphQL",
+      "item": [
+        {
+          "name": "Fetch Team by ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ($id: ID!) { team(id: $id) { id name matches { id date score { home away } } } }",
+                "variables": "{ \"id\": \"<TEAM_ID>\" }"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8085/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8085",
+              "path": [
+                "graphql"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Fetch All Teams",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query { teams { id name matches { id date score { home away } } } }",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8085/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8085",
+              "path": [
+                "graphql"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Fetch All Matches",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query { matches { id homeTeam { id name } awayTeam { id name } date score { home away } } }",
+                "variables": ""
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8085/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8085",
+              "path": [
+                "graphql"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Fetch Matches for a Team",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query ($id: ID!) { team(id: $id) { id name matches { id date score { home away } } } }",
+                "variables": "{ \"id\": \"<TEAM_ID>\" }"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8085/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8085",
+              "path": [
+                "graphql"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Match",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation ($input: MatchInput!) { createMatch(input: $input) { id homeTeam { id name } awayTeam { id name } date score { home away } status } }",
+                "variables": "{ \"input\": { \"homeTeamId\": \"<HOME_TEAM_ID>\", \"awayTeamId\": \"<AWAY_TEAM_ID>\", \"date\": \"<DATE>\", \"score\": { \"home\": <HOME_SCORE>, \"away\": <AWAY_SCORE> }, \"status\": \"<STATUS>\" } }"
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8085/graphql",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8085",
+              "path": [
+                "graphql"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

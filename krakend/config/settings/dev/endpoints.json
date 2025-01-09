@@ -1,0 +1,53 @@
+{
+  "endpoints": [
+    {
+      "endpoint": "/teams",
+      "method": "GET",
+      "backend_url_pattern": "/api/teams",
+      "backend_method": "GET",
+      "backend_host": "http://team-svc:8000",
+      "collection_mapping": "data"
+    },
+    {
+      "endpoint": "/teams/{id}",
+      "method": "GET",
+      "backend_url_pattern": "/api/teams/{id}",
+      "backend_method": "GET",
+      "backend_host": "http://team-svc:8000"
+    },
+    {
+      "endpoint": "/teams/by-ids",
+      "method": "GET",
+      "input_query_strings": ["ids", "somethingelse"],
+      "backend_url_pattern": "/api/teams/by-ids",
+      "backend_method": "GET",
+      "backend_host": "http://team-svc:8000",
+      "collection_mapping": "data"
+    },
+
+
+    {
+      "endpoint": "/matches",
+      "method": "POST",
+      "backend_url_pattern": "/api/matches",
+      "backend_method": "POST",
+      "backend_host": "http://match-svc:8000"
+    },
+    {
+      "endpoint": "/matches",
+      "method": "GET",
+      "backend_url_pattern": "/api/matches",
+      "backend_method": "GET",
+      "backend_host": "http://match-svc:8000",
+      "collection_mapping": "data"
+    },
+    {
+      "endpoint": "/matches/team/{teamId}",
+      "method": "GET",
+      "backend_url_pattern": "/api/matches/team/{teamId}",
+      "backend_method": "GET",
+      "backend_host": "http://match-svc:8000",
+      "collection_mapping": "data"
+    }
+  ]
+}
