@@ -1,0 +1,57 @@
+{
+  "info": {
+    "name": "Matches Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Match",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8001/api/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8001",
+          "path": ["api", "matches"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"homeTeamId\": \"65784b6202f0a492f60a1234\",\n  \"awayTeamId\": \"65784b6202f0a492f60a5678\",\n  \"date\": \"2023-10-15T15:00:00Z\",\n  \"score\": {\n    \"home\": 2,\n    \"away\": 1\n  }\n}"
+        }
+      }
+    },
+    {
+      "name": "Get All Matches",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8001/api/matches",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8001",
+          "path": ["api", "matches"]
+        }
+      }
+    },
+    {
+      "name": "Get Team Matches",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8001/api/matches/team/65784b6202f0a492f60a1234",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8001",
+          "path": ["api", "matches", "team", "65784b6202f0a492f60a1234"]
+        }
+      }
+    }
+  ]
+}

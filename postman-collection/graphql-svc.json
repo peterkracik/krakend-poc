@@ -1,0 +1,159 @@
+{
+  "info": {
+    "name": "GraphQL Service",
+    "description": "Postman collection for GraphQL service",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Fetch Team by ID",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query ($id: ID!) { team(id: $id) { id name matches { id date score { home away } } } }",
+            "variables": "{ \"id\": \"<TEAM_ID>\" }"
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8002/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8002",
+          "path": [
+            "graphql"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Fetch All Teams",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query { teams { id name matches { id date score { home away } } } }",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8002/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8002",
+          "path": [
+            "graphql"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Fetch All Matches",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query { matches { id homeTeam { id name } awayTeam { id name } date score { home away } } }",
+            "variables": ""
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8002/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8002",
+          "path": [
+            "graphql"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Fetch Matches for a Team",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "query ($id: ID!) { team(id: $id) { id name matches { id date score { home away } } } }",
+            "variables": "{ \"id\": \"<TEAM_ID>\" }"
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8002/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8002",
+          "path": [
+            "graphql"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create Match",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "mutation ($input: MatchInput!) { createMatch(input: $input) { id homeTeam { id name } awayTeam { id name } date score { home away } status } }",
+            "variables": "{ \"input\": { \"homeTeamId\": \"<HOME_TEAM_ID>\", \"awayTeamId\": \"<AWAY_TEAM_ID>\", \"date\": \"<DATE>\", \"score\": { \"home\": <HOME_SCORE>, \"away\": <AWAY_SCORE> }, \"status\": \"<STATUS>\" } }"
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8002/graphql",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8002",
+          "path": [
+            "graphql"
+          ]
+        }
+      }
+    }
+  ]
+}

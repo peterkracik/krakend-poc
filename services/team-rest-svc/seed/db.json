@@ -1,0 +1,64 @@
+{
+  "teams": [
+    {
+      "_id": "65784b6202f0a492f60a1234",
+      "name": "Red Dragons FC",
+      "stadiumName": "Dragon's Lair Stadium"
+    },
+    {
+      "_id": "65784b6202f0a492f60a5678",
+      "name": "Blue Eagles United",
+      "stadiumName": "Sky Arena"
+    },
+    {
+      "_id": "65784b6202f0a492f60a9abc",
+      "name": "Green Lions Athletic",
+      "stadiumName": "Jungle Bowl"
+    },
+    {
+      "_id": "65784b6202f0a492f60abcd",
+      "name": "Silver Sharks FC",
+      "stadiumName": "Ocean View Arena"
+    },
+    {
+      "_id": "65784b6202f0a492f60adef",
+      "name": "Golden Bears United",
+      "stadiumName": "Mountain Peak Stadium"
+    },
+    {
+      "_id": "65784b6202f0a492f60af123",
+      "name": "Purple Panthers SC",
+      "stadiumName": "Jungle Dome"
+    },
+    {
+      "_id": "65784b6202f0a492f60af456",
+      "name": "White Wolves FC",
+      "stadiumName": "Arctic Field"
+    },
+    {
+      "_id": "65784b6202f0a492f60af789",
+      "name": "Orange Owls Athletic",
+      "stadiumName": "Night Watch Ground"
+    },
+    {
+      "_id": "65784b6202f0a492f60afabc",
+      "name": "Yellow Yellowjackets",
+      "stadiumName": "Buzz Bowl"
+    },
+    {
+      "_id": "65784b6202f0a492f60afdef",
+      "name": "Black Knights FC",
+      "stadiumName": "Castle Arena"
+    },
+    {
+      "_id": "65784b6202f0a492f60b1234",
+      "name": "Crimson Cobras SC",
+      "stadiumName": "Venom Pit Stadium"
+    },
+    {
+      "_id": "65784b6202f0a492f60b5678",
+      "name": "Turquoise Tigers",
+      "stadiumName": "Jungle Paradise Ground"
+    }
+  ]
+}

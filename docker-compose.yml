@@ -1,0 +1,42 @@
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=teamsdb
+
+  team-svc:
+    build: ./services/team-rest-svc
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DB_NAME=football
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+
+  match-svc:
+    build: ./services/match-rest-svc
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DB_NAME=football
+    ports:
+      - "8001:8000"
+    depends_on:
+      - mongodb
+
+  graphql-svc:
+    build: ./services/graphql-svc
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017
+      - MONGO_DB_NAME=football
+    ports:
+      - "8002:8000"
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb_data:

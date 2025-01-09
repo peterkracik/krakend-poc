@@ -1,0 +1,53 @@
+{
+  "info": {
+    "name": "Teams Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Teams",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/api/teams",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "teams"]
+        }
+      }
+    },
+    {
+      "name": "Get Team by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/api/teams/65784b6202f0a492f60a1234",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "teams", "65784b6202f0a492f60a1234"]
+        }
+      }
+    },
+    {
+      "name": "Get Teams by IDs",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/api/teams/by-ids?ids=65784b6202f0a492f60a1234,65784b6202f0a492f60a5678,65784b6202f0a492f60a9abc",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8000",
+          "path": ["api", "teams", "by-ids"],
+          "query": [
+            {
+              "key": "ids",
+              "value": "65784b6202f0a492f60a1234,65784b6202f0a492f60a5678,65784b6202f0a492f60a9abc"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
